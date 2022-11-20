@@ -1,3 +1,4 @@
+const count = 132;
 const sql = require("./db.js");
 // constructor
 const Tutorial = function(tutorial) {
@@ -6,14 +7,15 @@ const Tutorial = function(tutorial) {
   this.published = tutorial.published;
 };
 Tutorial.create = (newTutorial, result) => {
-  sql.query("INSERT INTO tutorials VALUES (1, 'a', 'b', 0)", newTutorial, (err, res) => {
+  sql.query("INSERT INTO tutorials VALUES (?,?)", [count, newTutorial], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
-      return;
+      return;   
     }
     console.log("created tutorial: ", { id: res.insertId, ...newTutorial });
     result(null, { id: res.insertId, ...newTutorial });
   });
+  //count++;
 };
 module.exports = Tutorial;

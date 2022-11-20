@@ -1,15 +1,18 @@
 const express1 = require("express")
-const cors1 = require("cors")
+//const cors1 = require("cors")
 const app1 = express1();
 
-var corsopt = {
-    origin: "http://localhost:8081"
-};
-app1.use(cors1(corsopt))
+// var corsopt = {
+//     origin: "http://localhost:8081"
+// };
+//app1.use(cors1(corsopt))
 app1.use(express1.json());
 
 app1.use(express1.urlencoded({extended: true}));
-
+// app1.use(function (req, res, next) {
+//     console.log("Middleware called")
+//     next();
+// });
 app1.get('/',(req,res)=>{
     res.json({message: "route working"});
 });
